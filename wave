@@ -1,0 +1,27 @@
+var points = [
+	[0.5, 0, 0.5],
+    [0, 0.5, 0.5],
+    [-0.5, 0, 0.5],
+    [0, -0.5, 0.5]
+]
+
+for (var i = 4; i > 0; i--) {
+	points.splice(i, 0, [NaN, NaN, NaN, [-30]], [NaN, NaN, NaN, [30]])
+}
+
+new Job({name: "wave",
+		do_list: [
+			function() {
+				let cmds = []
+            	for (var j = 0; j < points.length; j++) {
+                	if (points[j].length === 3) {
+            			cmds.push(Dexter.move_to([points[j][0], points[j][1], points[j][2]],
+									[0, 0, -1],
+									Dexter.RIGHT_DOWN_OUT))
+                    } else if (points[j].length === 4) {
+                    	cmds.push(Dexter.move_all_joints([points[j][0], points[j][1], points[j][2], points[j][3]]))
+                    }
+            	}
+            	return cmds
+			}            
+		]})
