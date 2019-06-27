@@ -1,0 +1,41 @@
+var points = []
+
+var xChange
+var yChange
+var x = 0
+var y = -0.5
+
+for (var i = 0; i < 120; i++) {
+	if (i < 30 || i >= 90) {
+    	xChange = 0.5 / 30
+    } else {
+    	xChange = -0.5 / 30
+    }
+    if (i < 60) {
+    	yChange = 0.5 / 30
+    } else {
+    	yChange = -0.5 / 30
+    }
+    points.push([x, y, 0.5])
+    x += xChange
+    y += yChange
+}
+
+
+new Job({name: "HELICOPTER",
+	do_list: [
+		function() {
+			let cmds = []
+            for (var j = 0; j < points.length; j++) {
+            	cmds.push(Dexter.move_to([points[j][0], points[j][1], points[j][2]],
+                			   [0, 0, -1],
+                   	 		   Dexter.RIGHT_DOWN_OUT))
+            }
+            for (var j = points.length - 1; j >=0; j--) {
+            	cmds.push(Dexter.move_to([points[j][0], points[j][1], points[j][2]],
+                			   [0, 0, -1],
+                   	 		   Dexter.RIGHT_DOWN_OUT))
+            }
+            return cmds
+		}            
+	]})
