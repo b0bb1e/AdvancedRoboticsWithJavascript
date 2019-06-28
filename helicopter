@@ -5,16 +5,16 @@ var yChange
 var x = 0
 var y = -0.5
 
-for (var i = 0; i < 120; i++) {
-	if (i < 30 || i >= 90) {
-    	xChange = 0.5 / 30
+for (var i = 0; i < 40; i++) {
+	if (i < 10 || i >= 30) {
+    	xChange = 0.5 / 10
     } else {
-    	xChange = -0.5 / 30
+    	xChange = -0.5 / 10
     }
-    if (i < 60) {
-    	yChange = 0.5 / 30
+    if (i < 20) {
+    	yChange = 0.5 / 10
     } else {
-    	yChange = -0.5 / 30
+    	yChange = -0.5 / 10
     }
     points.push([x, y, 0.5])
     x += xChange
