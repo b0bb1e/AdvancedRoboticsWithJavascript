@@ -1,0 +1,15 @@
+var bend_over = function() {
+	let angle = Math.random() * 360
+    return Dexter.move_all_joints([NaN, angle, [45]])
+}
+
+var celebrate = function() {
+	let cmds = []
+    cmds.push(Dexter.move_all_joints([NaN, NaN, NaN, [30], [30]]))
+    cmds.push(Dexter.move_all_joints([NaN, NaN, NaN, [-30], [-30]]))
+    return cmds
+}
+
+new Job({name: "wheee",
+		do_list: [bend_over(), celebrate(), Dexter.move_all_joints(Dexter.HOME_ANGLES)]
+})
