@@ -1,0 +1,3 @@
+new Job({name: "drawing",
+		show_instructions: false,
+		do_list: [Dexter.draw_dxf]})
