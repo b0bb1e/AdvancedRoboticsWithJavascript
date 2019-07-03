@@ -5,18 +5,21 @@ var open = 150
 var close = 30
 
 new Job({name: "claw-game",
-		do_list: [Dexter.move_all_joints([NaN, NaN, NaN, NaN, NaN, NaN, close]),
-        			Dexter.empty_instruction_queue(),
-        			Dexter.move_to([prize[0], prize[1], prize[2] + 0.3], [0, 0, -1]),
+		do_list: [Dexter.move_to([[0], [0], [0]], undefined, undefined, undefined, 0, close),
+			Dexter.sleep(1),
+			Dexter.empty_instruction_queue(),
+			Dexter.move_to([prize[0], prize[1], prize[2] + 0.3], [0, 0, -1]),
                     Dexter.empty_instruction_queue(),
-        			Dexter.move_all_joints([NaN, NaN, NaN, NaN, NaN, NaN, open]),
+		    Dexter.move_to([[0], [0], [0]], undefined, undefined, undefined, 0, open),
+		    Dexter.sleep(1),
                     Dexter.empty_instruction_queue(),
-        			Dexter.move_to(prize, [0, 0, -1]),
+		    Dexter.move_to(prize, [0, 0, -1]),
                     Dexter.empty_instruction_queue(),
-                    Dexter.move_all_joints([NaN, NaN, NaN, NaN, NaN, NaN, close]),
+                    Dexter.move_to([[0], [0], [0]], undefined, undefined, undefined, 0, close),
+		    Dexter.sleep(1),
                     Dexter.empty_instruction_queue(),
                     Dexter.move_to([[0], [0], [0.3]], [0, 0, -1]),
                     Dexter.move_to([exit_hole[0], exit_hole[1], exit_hole[2] + 0.5], [0, 0, -1]),
                     Dexter.empty_instruction_queue(),
-                    Dexter.move_all_joints([NaN, NaN, NaN, NaN, NaN, NaN, open])]
+                   Dexter.move_to([[0], [0], [0]], undefined, undefined, undefined, 0, open)]
 })
