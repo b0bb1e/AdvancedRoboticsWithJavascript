@@ -2,7 +2,7 @@ var prize = [0.2, -0.4, 0.2]
 var exit_hole = [-0.1, 0.5, 0]
 
 var open_pos = 150
-var close_pos = 60
+var close_pos = 30
 
 var move_claw = function(distance) {
 	return [Dexter.empty_instruction_queue(),
@@ -11,19 +11,18 @@ var move_claw = function(distance) {
         	Dexter.empty_instruction_queue()]
 }
 
-var go_above = function(point) {
-	return Dexter.move_to([point[0], point[1], point[2] + 0.3], [0, 0, -1])
+var go_above = function(point, rise) {
+	return Dexter.move_to([point[0], point[1], point[2] + rise], [0, 0, -1])
 }
 
 new Job({name: "claw-game",
 		do_list: [Dexter.set_parameter("RebootServo", 1),
-        		Dexter.set_parameter("RebootServo", 3),
-                    	move_claw(close_pos),
-        		go_above(prize),
-                    	move_claw(open_pos),
-        		Dexter.move_to(prize, [0, 0, -1]),
+        			Dexter.set_parameter("RebootServo", 3),
+        			go_above(prize, 0.3),
+                    move_claw(open_pos),
+        			Dexter.move_to(prize, [0, 0, -1]),
                    	move_claw(close_pos),
-                    	go_above(prize),
-                    	go_above(exit_hole),
-                    	move_claw(open_pos)]
+                    go_above(prize, 0.3),
+                    go_above(exit_hole, 0.5),
+                    move_claw(open_pos)]
 })
