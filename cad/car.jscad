@@ -1,4 +1,4 @@
-/* Edit this file to make it closer to a car which can be 3D printed.
+ /* Edit this file to make it closer to a car which can be 3D printed.
 Hints:
 - Use a modular approach. e.g. write a function which returns a wheel
 - Allow for intelligent scaling. e.g. the wheel function should take parameters that specify the hub size, tire width, diameter, etc...
@@ -164,7 +164,7 @@ function wheel(numSpokes, hubRadius, axelRadius, width, radius, grooveDepth, x, 
             )
         ));    
     }
-    return translate([x, y, radius],
+    return translate([x, y, 0],
         difference(
             union(outside, hub, union(spokes)), 
             cylinder({r: axelRadius, h: width}),
