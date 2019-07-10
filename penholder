@@ -1,0 +1,64 @@
+/* Dexter HD End Effector blank.
+Subtract this from any part to make it slide onto the end effector
+*/
+
+function getParameterDefinitions() {
+    return[
+        {name: "penRadius", type: "int", initial: 4, min: 0, max: 99, caption: "Pen Radius"},
+        {name: "tipRadius", type: "int", initial: 4, min: 0, max: 99, caption: "Tip Radius"}
+    ];
+}
+
+function main() { 
+    var w = 7.5;
+    var h = 15;
+    var penRadius = params.penRadius;
+    var tipRadius = params.tipRadius;
+    
+    if(tipRadius >= penRadius) {
+        tipRadius = penRadius * 0.75;
+    }
+    
+    return difference(
+        translate([-10 - penRadius * 2.1, -20, 0],
+            cube([16 + penRadius * 2.1, 50, h])
+        ),
+        union(
+            translate([-w - penRadius, 0, h / 2],
+                cylinder({r: penRadius, h: h / 2})
+            ),
+            translate([-w - penRadius, 0, 0],
+                cylinder({r: penRadius, h: h / 3})
+            ),
+            translate([-w - penRadius, 0, h / 3],
+                cylinder({r: tipRadius, h: h / 6})
+            )
+        ),
+        union(
+            rotate([0, 0, 45],
+                translate([-w / 2, -w / 2, 0],
+                    color("black",
+                        cube([w, w, h])
+                    )
+                )
+            ),
+            translate([0, -w / 2, 0],
+                color("black",
+                    cube([w / 2, w, h])
+                )
+            ),
+            translate([-13.5, -15, -3],
+                color("black",
+                    cube([20, 40, 3])
+                )
+            ),
+            rotate([0, 90, 0],
+                translate([-15, -15, 3.5],
+                    color("black",
+                        cube([15, 40, 3])
+                    )
+                )
+            )
+        )
+    );
+}
