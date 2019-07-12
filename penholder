@@ -5,7 +5,7 @@ Subtract this from any part to make it slide onto the end effector
 function getParameterDefinitions() {
     return[
         {name: "penRadius", type: "int", initial: 4, min: 0, max: 99, caption: "Pen Radius"},
-        {name: "tipRadius", type: "int", initial: 4, min: 0, max: 99, caption: "Tip Radius"}
+        {name: "tipRadius", type: "int", initial: 3, min: 0, max: 99, caption: "Tip Radius"}
     ];
 }
 
@@ -24,13 +24,10 @@ function main() {
             cube([16 + penRadius * 2.1, 50, h])
         ),
         union(
-            translate([-w - penRadius, 0, h / 2],
-                cylinder({r: penRadius, h: h / 2})
+            translate([-w - penRadius, 0, h / 6],
+                cylinder({r: penRadius, h: h * 5 / 6})
             ),
             translate([-w - penRadius, 0, 0],
-                cylinder({r: penRadius, h: h / 3})
-            ),
-            translate([-w - penRadius, 0, h / 3],
                 cylinder({r: tipRadius, h: h / 6})
             )
         ),
