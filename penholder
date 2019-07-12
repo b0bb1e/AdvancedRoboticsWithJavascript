@@ -20,8 +20,8 @@ function main() {
     }
     
     return difference(
-        translate([-10 - penRadius * 2.1, -20, 0],
-            cube([16 + penRadius * 2.1, 50, h])
+        translate([-10 - penRadius * 2.1, -15, 0],
+            cube([16 + penRadius * 2.1, 30, h])
         ),
         union(
             translate([-w - penRadius, 0, h / 6],
